@@ -1,0 +1,30 @@
+{
+  "name": "andre",
+  "version": "1.0.0",
+  "description": "no description",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+<<<<<<< Updated upstream
+    "dev": "nodemon server.js"
+=======
+    "dev" : "nodemon server.js"
+>>>>>>> Stashed changes
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+<<<<<<< Updated upstream
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "mysql": "^2.18.1",
+=======
+  "devDependencies": {
+    "express": "^4.18.2",
+>>>>>>> Stashed changes
+    "nodemon": "^2.0.22"
+  }
+}
