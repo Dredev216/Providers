@@ -1,13 +1,15 @@
 import mysql from 'mysql'
 
-const conection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    database: "drecis",
-    password: "",
-    port: "3306"
-})
+const conexao = mysql.createConnection(
+    {
+        user: 'root',
+        host: 'localhost',
+        port: '3306',
+        database: 'providersdb',
+        password: ''
+    }
+)
 
-conection.connect()
+conexao.connect()
 
-export default conection
+export default conexao

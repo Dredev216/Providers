@@ -1,48 +1,77 @@
 import express from 'express'
-<<<<<<< Updated upstream
-import conection from '../db/dbConection.js'
+import conexao from '../db/dbConection.js'
 
 const app = express()
 app.use(express.json())
 
-app.post('/providers', (req, res) => {
-    providers.push(req.body)
-    res.send('\nEnviado com sucesso')
-})
-
-app.get('/', (req, res) => {
-   const sql = 'SELECT * FROM providers'
-   conection.query(sql, (err, result) => {
-        if(err){
-            res.json({'ERRO':err})
-        } 
-        else{
+app.post('/create', (req, res) => {
+    let body = req.body
+    let sql = 'INSERT INTO providers SET ?'
+    conexao.query(sql, body, (err, result) => {
+        if (err) {
+            res.json({ 'ERROR ': err })
+        }
+        else {
             res.json(result)
         }
-   })
+    })
 })
-
-app.get('/prov/:id', (req, res) => {
-    res.json(setId(req.params.id))
-})
-
-app.put('/updateProv/:id', (req, res) => {
-    let index = getIndex(req.params.id)
-
-    providers[index].name = req.body.name
-    providers[index].provider = req.body.provider
-
-    res.json(providers)
-})
-
-export default app
-=======
-
-const app = express()
 
 app.get('/', (req, res) => {
-    res.send("Hello World")
+    let sql = 'SELECT * FROM providers;'
+
+    conexao.query(sql, (err, result) => {
+        if (err) {
+            res.json({ 'ERROR ': err })
+        }
+        else {
+            res.send(result)
+        }
+    })
 })
 
+
+app.get('/:id', (req, res) => {
+    let id = req.params.id
+    let sql = 'SELECT * FROM providers WHERE prov_id = ?;'
+
+    conexao.query(sql, id, (err, result) => {
+        if (err) {
+            res.json({ 'ERROR ': err })
+        }
+        else {
+            res.send(result)
+        }
+    })
+})
+
+
+app.put('/update/:id', (req, res) => {
+    let sql = 'UPDATE providers SET ? WHERE prov_id = ?'
+    let body = req.body
+    let id = req.params.id
+
+    conexao.query(sql, [body, id], (err, result) => {
+        if (err) {
+            res.json({ 'ERROR: ': err })
+        } else {
+            res.json(result)
+        }
+    })
+})
+
+app.delete('/delete/:id', (req, res) => {
+    let id = req.params.id
+    let sql = 'DELETE FROM providers WHERE prov_id = ?'
+
+    conexao.query(sql, id, (err, result) => {
+        if (err) {
+            res.json({ 'ERROR: ': err })
+        } else {
+            res.json(result)
+        }
+    })
+})
+
+
 export default app
->>>>>>> Stashed changes
